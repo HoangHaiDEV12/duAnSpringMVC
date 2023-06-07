@@ -17,7 +17,6 @@ public class OtpNewPassWord {
 	
 	public OtpNewPassWord() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public OtpNewPassWord(String otp1, String otp2, String otp3, String otp4, String otp5, String otp6, String email,
 			String userPass, String userPass1) {

@@ -26,7 +26,6 @@ public class SendEmailUtil {
 		pro.put("mail.smtp.auth", "true");
 		pro.put("mail.smtp.port", "587");
 
-		// creates a new session with an authenticator
 		Authenticator auth = new Authenticator() {
 			public PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(userName, password);
@@ -35,7 +34,6 @@ public class SendEmailUtil {
 
 		Session session = Session.getInstance(pro, auth);
 
-		// creates a new e-mail message
 		Message msg = new MimeMessage(session);
 
 		msg.setFrom(new InternetAddress(userName));
@@ -47,10 +45,8 @@ public class SendEmailUtil {
 			msg.setSentDate(new Date());
 			msg.setText(message);
 
-			// sends the e-mail
 			Transport.send(msg);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 }

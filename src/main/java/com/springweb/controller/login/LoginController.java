@@ -46,9 +46,6 @@ public class LoginController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-//	@ Xử lý lỗi ở đây
-//	CustomUserDetails customUserDetails;
-
 	User user;
 	String email = "";
 	String error = null;
@@ -84,9 +81,7 @@ public class LoginController {
 			} else {
 				model.addAttribute("error", "Khong tim thay tai khoan");
 			}
-//			rd.forward(request, response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -105,7 +100,7 @@ public class LoginController {
 	@RequestMapping(value = "/recover", method = RequestMethod.POST)
 	public String SendMailOTP(@ModelAttribute(name = "oNewPassWord") OtpNewPassWord oNewPassWord, HttpSession session) {
 
-		String subject = "Reset Pass From Vớ store !";
+		String subject = "Reset Pass From Vá»› store !";
 
 		Random r = new Random();
 		int otp = r.nextInt((999999 - 100000) + 1) + 100000;
@@ -113,7 +108,7 @@ public class LoginController {
 		session.setAttribute("otp", String.valueOf(otp));
 
 		session.setMaxInactiveInterval(60);
-		String content = "Hello \r\n" + "đây là mã otp của bạn : " + otp + "\r\n" + "Thanks you!";
+		String content = "Hello \r\n" + "Ä‘Ã¢y lÃ  mÃ£ otp cá»§a báº¡n : " + otp + "\r\n" + "Thanks you!";
 
 		try {
 			SendEmailUtil.sendEmail(StaticVariable.HOST, StaticVariable.POST, StaticVariable.MAIL_SEVER,
@@ -143,7 +138,7 @@ public class LoginController {
 
 			return "login/changenewpass";
 		} else {
-			model.addAttribute("otpstatus", "Mã xác thực không đúng hoặc đã hết hạn");
+			model.addAttribute("otpstatus", "MÃ£ xÃ¡c thá»±c khÃ´ng Ä‘Ãºng hoáº·c Ä‘Ã£ háº¿t háº¡n");
 
 			return "login/otpconfirm";
 		}
@@ -160,14 +155,13 @@ public class LoginController {
 				userService.saveUser(user);
 
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 
 			}
 
 			return "login/login";
 		} else {
-			model.addAttribute("error", "Mật khẩu không khớp");
+			model.addAttribute("error", "Máº­t kháº©u khÃ´ng khá»›p");
 			return "login/changenewpass";
 
 		}
@@ -183,7 +177,6 @@ public class LoginController {
 		System.out.println("hahahaa");
 		return "login/regist";
 	}
-// Về tình hiểu thay bằng @requestBody ngắn họn hơn 
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public String rigistAccount(@ModelAttribute("uRequest") SaveUserRequest uRequest, Model model)
 			throws SQLException, JsonMappingException, JsonProcessingException {
@@ -196,7 +189,7 @@ public class LoginController {
 		Set<UserRole> rloes = new HashSet<>();
 
 		if (!validate(mail)) {
-			error = "Email không đúng định dạng";
+			error = "Email khÃ´ng Ä‘Ãºng Ä‘á»‹nh dáº¡ng";
 
 			return "login/regist";
 		}
@@ -228,13 +221,12 @@ public class LoginController {
 			return "redirect:login";
 
 		} else {
-			error = "Nhập lại mật khẩu không đúng";
+			error = "Nháº­p láº¡i máº­t kháº©u khÃ´ng Ä‘Ãºng";
 			model.addAttribute("error", error);
 			return "login/regist";
 
 		}
 	}
-//	Về tìm hiểu lại 
 
 	private boolean validate(String emailStr) {
 		Pattern pattern = Pattern.compile("^[a-z0-9](\\.?[a-z0-9]){5,}@g(oogle)?mail\\.com$", Pattern.CASE_INSENSITIVE);

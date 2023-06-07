@@ -8,15 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.springweb.entity.User;
 
 @Controller
-public class TestAdmin {
+public class Admin {
 	
 	
 	User user;
 	
 	@RequestMapping(value = "/admin")
-//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String welcome(Model model) {
-System.out.println("hahahaaaa");
 		return "admin/admin";
 	}
 }

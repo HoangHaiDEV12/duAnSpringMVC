@@ -22,7 +22,6 @@ public class LoginService {
 	  public Authentication login(String userName, String passWord) {
 	    Authentication authentication;
 
-	    // Perform verification with userId and password
 	    Authentication request = new UsernamePasswordAuthenticationToken(userName,
 	    		passWord);
 
