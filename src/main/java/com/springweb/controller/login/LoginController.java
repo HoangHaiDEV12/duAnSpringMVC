@@ -100,7 +100,7 @@ public class LoginController {
 	@RequestMapping(value = "/recover", method = RequestMethod.POST)
 	public String SendMailOTP(@ModelAttribute(name = "oNewPassWord") OtpNewPassWord oNewPassWord, HttpSession session) {
 
-		String subject = "Reset Pass From Vá»› store !";
+		String subject = "Reset Pass From Vớ store !";
 
 		Random r = new Random();
 		int otp = r.nextInt((999999 - 100000) + 1) + 100000;
@@ -108,7 +108,7 @@ public class LoginController {
 		session.setAttribute("otp", String.valueOf(otp));
 
 		session.setMaxInactiveInterval(60);
-		String content = "Hello \r\n" + "Ä‘Ã¢y lÃ  mÃ£ otp cá»§a báº¡n : " + otp + "\r\n" + "Thanks you!";
+		String content = "Hello \r\n" + "đây là mã otp của bạn : " + otp + "\r\n" + "Thanks you!";
 
 		try {
 			SendEmailUtil.sendEmail(StaticVariable.HOST, StaticVariable.POST, StaticVariable.MAIL_SEVER,
@@ -138,7 +138,7 @@ public class LoginController {
 
 			return "login/changenewpass";
 		} else {
-			model.addAttribute("otpstatus", "MÃ£ xÃ¡c thá»±c khÃ´ng Ä‘Ãºng hoáº·c Ä‘Ã£ háº¿t háº¡n");
+			model.addAttribute("otpstatus", "Mã xác thực không đúng hoặc hết hạn");
 
 			return "login/otpconfirm";
 		}
@@ -161,7 +161,7 @@ public class LoginController {
 
 			return "login/login";
 		} else {
-			model.addAttribute("error", "Máº­t kháº©u khÃ´ng khá»›p");
+			model.addAttribute("error", "Mật khẩu không khớp");
 			return "login/changenewpass";
 
 		}
@@ -189,7 +189,7 @@ public class LoginController {
 		Set<UserRole> rloes = new HashSet<>();
 
 		if (!validate(mail)) {
-			error = "Email khÃ´ng Ä‘Ãºng Ä‘á»‹nh dáº¡ng";
+			error = "Email không đúng định dạng";
 
 			return "login/regist";
 		}
@@ -221,7 +221,7 @@ public class LoginController {
 			return "redirect:login";
 
 		} else {
-			error = "Nháº­p láº¡i máº­t kháº©u khÃ´ng Ä‘Ãºng";
+			error = "Nhập lại, mật khẩu không đúng";
 			model.addAttribute("error", error);
 			return "login/regist";
 
